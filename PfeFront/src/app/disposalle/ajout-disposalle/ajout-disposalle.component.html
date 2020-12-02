@@ -1,0 +1,74 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Ajout dispo salle</h4>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="addDispoSal" (ngSubmit)="save()">
+      <div class="form-row">
+
+        <div class="form-group col-md-4">
+          <label>Date debut :</label>
+          <input type="date" class="form-control" onkeydown="return false" [min]="minDate | date:'yyyy-MM-dd'"
+            name="dateDebut" formControlName="dateDebut">
+          <div *ngIf="dateDebut.touched && dateDebut.invalid">
+            <small *ngIf="dateDebut.errors.required" class="text-danger">dateDebut est Obligatoire<br></small>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Date fin :</label>
+          <input type="date" class="form-control" onkeydown="return false" [min]="minDate | date:'yyyy-MM-dd'"
+                 name="dateFin" formControlName="dateFin">
+          <div *ngIf="dateFin.touched && dateFin.invalid">
+            <small *ngIf="dateFin.errors.required" class="text-danger">dateFin est Obligatoire<br></small>
+          </div>
+        </div>
+
+
+        <div class="form-group col-md-4">
+          <label>heureDebut :</label>
+          <input type="time" class="form-control"    name="heureDebut" formControlName="heureDebut">
+          <div *ngIf="heureDebut.touched && heureDebut.invalid">
+            <small *ngIf="heureDebut.errors.required" class="text-danger">heureDebut est Obligatoire<br></small>
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label>heureFin :</label>
+          <input type="time" class="form-control"    name="heureFin" formControlName="heureFin">
+          <div *ngIf="heureFin.touched && heureFin.invalid">
+            <small *ngIf="heureFin.errors.required" class="text-danger">Heure de l'examen est Obligatoire<br></small>
+          </div>
+        </div>
+
+
+        <div class="form-group col-md-4">
+          <label>Motif :</label>
+          <input type="text" class="form-control" name="motif" formControlName="motif">
+          <div *ngIf="motif.touched && motif.invalid">
+            <small *ngIf="motif.errors.required" class="text-danger">Durée CIN est Obligatoire<br></small>
+          </div>
+        </div>
+
+
+
+        <div class="form-group col-md-6">
+          <label>Salle :</label>
+          <select class="form-control" name="salle" formControlName="salle">
+            <option *ngFor="let s of salles" value="{{s.codeSalle}}">{{s.codeSalle}}</option>
+          </select>
+          <div *ngIf="salle.touched && salle.invalid">
+            <small *ngIf="salle.errors.required" class="text-danger">Veuillez Choisir Salle<br></small>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="card-footer text-right">
+        <button class="btn btn-primary mr-1" [disabled]="addDispoSal.invalid" type="submit">Valider</button>
+        <button class="btn btn-secondary" type="reset">Reset</button>
+      </div>
+
+    </form>
+  </div>
+</div>

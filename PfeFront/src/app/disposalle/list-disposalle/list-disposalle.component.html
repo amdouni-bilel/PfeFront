@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Liste des Dispo Salle</h4>
+    <div class="card-header-form">
+      <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="term" placeholder="Search">
+        <div class="input-group-btn">
+          <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table  id="customers" class="table table-striped">
+        <tr>
+                  <th>Date deb</th>
+                  <th>Date fin</th>
+                  <th>Heure Deb</th>
+                  <th>Heure Fin</th>
+                  <th>motif</th>
+                  <th>Salle</th>
+                  <th>Action</th>
+                </tr>
+                <tr *ngFor="let e of disposalles | filter:term">
+                  <td class="text-center" width="90"> {{e.dateDebut}}</td>
+<!--
+                  <td class="text-center" width="90">{{e.dateDebut }}</td>
+-->
+                  <td class="text-center" width="90"> {{e.dateFin}}</td>
+<!--
+                  <td class="text-center" width="90">{{e.dateFin }}</td>
+-->
+                  <td class="text-truncate" width="90">{{e.heureDebut}}</td>
+                  <td class="text-truncate" width="90">{{e.heureFin}}</td>
+                  <td class="text-truncate" width="90">{{e.motif}}</td>
+
+                  <td class="align-middle">{{e.salle.codeSalle}} </td>
+
+                  <td width="120">
+                    <button class="btn btn-warning" [routerLink]="['../edit', e.id]"  ><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-danger"  (click)="suppdispoSalle(e.id)"><i class="fas fa-trash"></i></button>
+                  </td>
+                </tr>
+      </table>
+    </div>
+  </div>
+</div>
